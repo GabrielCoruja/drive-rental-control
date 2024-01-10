@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: rental_car_backend
+    build: .
+    ports:
+      - 3001:3001
+    # Caso queira que o container esteja atualizado durante o desenvolvimento, sem que você precise ficar fazendo down e up dos containers, descomente as 3 linhas abaixo
+    # command: dev 
+    volumes: 
+      - ./src:/app/src
+    # depends_on:
+      # db:
+      #   condition: service_healthy
+    environment:
+      - PORT=3000
+      - JWT_SECRET=jwt_secret
+      # Os dados abaixo se referem ao container `db`
+      # Dica: Relembre aqui da comunicação interna entre containers
+      - DB_USER=root
+      - DB_PASS=password
+      - DB_HOST=db
+      - DB_PORT=3306
+    # healthcheck:
+    #   test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+    #   timeout: 10s
+    #   retries: 5
+
+  db:
+    image: mysql:8.0.32
+    container_name: rental_car_db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./database:/var/lib/mysql
+
+networks:
+  default:
+    name: trybepost-network
