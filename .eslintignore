@@ -1,2 +1,11 @@
 # Dependency directories
 node_modules/
+
+# database config
+src/infraestructure/persistence/database/**/*.ts
+
+# test files
+src/tests/**/*.ts
+
+# config files
+jest.config.js
