@@ -115,7 +115,7 @@ npm test
 
 ### Documentação
 
-O projeto possui um arquivo Insomnia.json com a documentação dos endpoints.
+O projeto possui um arquivo [Insomnia.json](https://github.com/GabrielCoruja/drive-rental-control/blob/main/Insomnia.json) com a documentação dos endpoints.
 
 O projeto possui 3 endpoints, sendo eles:
 
