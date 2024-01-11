@@ -38,7 +38,8 @@ class CarController {
   }
 
   async getAll(req: Request, res: Response): Promise<Response> {
-    const cars = await this.carUseCase.getAll();
+    const { color, brand } = req.query;
+    const cars = await this.carUseCase.getAll(color as string, brand as string);
 
     return res.status(StatusCode.OK).json(cars);
   }

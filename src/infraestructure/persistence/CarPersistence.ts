@@ -1,6 +1,6 @@
 import { ModelStatic } from 'sequelize';
 import Car from '../../domain/entities/Car';
-import ICarPersistence from '../../domain/repositories/Car/ICarPersistence';
+import ICarPersistence, { CarFilter } from '../../domain/repositories/Car/ICarPersistence';
 import CarModel from './database/models/CarModel';
 
 class CarPersistence implements ICarPersistence {
@@ -15,10 +15,7 @@ class CarPersistence implements ICarPersistence {
     const findCar = await this.carModel.findByPk(id);
     if (!findCar) return null;
 
-    const test = await findCar.update(car);
-    console.log('test', test);
-
-    return findCar.dataValues;
+    return (await findCar.update(car)).dataValues;
   }
 
   async delete(id: string): Promise<void | null> {
@@ -34,7 +31,15 @@ class CarPersistence implements ICarPersistence {
   }
 
   async getAll(): Promise<Car[]> {
-    return (await this.carModel.findAll()).map((car) => car.dataValues);
+    const findCar = await this.carModel.findAll();
+    return findCar.map((car) => car.dataValues);
+  }
+
+  async getAllByColorOrBrand(carFilter: CarFilter): Promise<Car[]> {
+    const findCar = await this.carModel.findAll({
+      where: carFilter,
+    });
+    return findCar.map((car) => car.dataValues);
   }
 }
 

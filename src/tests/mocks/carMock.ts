@@ -61,4 +61,67 @@ const cars = [
   },
 ];
 
-export default cars;
+const carsByBrand = [
+  {
+    licensePlateId: 'ABC-1234',
+    name: 'Corsa',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+  {
+    licensePlateId: 'DEF-5678',
+    name: 'Opala',
+    brand: 'Chevrolet',
+    color: 'gray',
+  },
+  {
+    licensePlateId: 'GHI-9012',
+    name: 'Chevette',
+    brand: 'Chevrolet',
+    color: 'blue',
+  },
+  {
+    licensePlateId: 'JKL-3456',
+    name: 'Monza',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+];
+
+const carsByColor = [
+  {
+    licensePlateId: 'ABC-1234',
+    name: 'Corsa',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+  {
+    licensePlateId: 'JKL-3456',
+    name: 'Monza',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+  {
+    licensePlateId: 'STU-5678',
+    name: 'Kombi',
+    brand: 'Volkswagen',
+    color: 'red',
+  },
+];
+
+const carsByBrandAndColor = [
+  {
+    licensePlateId: 'ABC-1234',
+    name: 'Corsa',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+  {
+    licensePlateId: 'JKL-3456',
+    name: 'Monza',
+    brand: 'Chevrolet',
+    color: 'red',
+  },
+];
+
+export { cars, carsByBrand, carsByColor, carsByBrandAndColor };

@@ -1,5 +1,5 @@
 import Car from '../../entities/Car';
-import ICarPersistence from './ICarPersistence';
+import ICarPersistence, { CarFilter } from './ICarPersistence';
 
 class CarRepository {
   constructor(private iCarPersistence: ICarPersistence) { }
@@ -22,6 +22,10 @@ class CarRepository {
 
   async getAll(): Promise<Car[]> {
     return this.iCarPersistence.getAll();
+  }
+
+  async getAllByColorOrBrand(carFilter: CarFilter): Promise<Car[]> {
+    return this.iCarPersistence.getAllByColorOrBrand(carFilter);
   }
 }
 

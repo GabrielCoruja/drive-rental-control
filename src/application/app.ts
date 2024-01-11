@@ -14,6 +14,8 @@ app.use(helmet());
 app.use('/cars', carRoutes);
 app.use('/drivers', driverRoutes);
 app.use('/rentals', rentalCarRoutes);
+app.use('*', (_req, res) => res.status(404).json({ message: 'Route Not Found' }));
+
 app.use(ErrorHandler.handleError);
 
 export default app;
