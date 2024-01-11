@@ -112,7 +112,10 @@ Para executar os testes, execute o comando:
 npm test
 ```
 
+
 ### Documentação
+
+O projeto possui um arquivo Insomnia.json com a documentação dos endpoints.
 
 O projeto possui 3 endpoints, sendo eles:
 
@@ -124,7 +127,6 @@ O projeto possui 3 endpoints, sendo eles:
   <summary>GET /cars</summary>
 
 - Retorna todos os carros cadastrados.
-
 
 - Endpoind com filtros:
 
