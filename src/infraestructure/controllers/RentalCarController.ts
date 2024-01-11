@@ -16,7 +16,7 @@ class DriverController {
     });
 
     if (!createNewRentalDriver) {
-      return res.status(StatusCode.BAD_REQUEST).json({ message: 'Driver already rented' });
+      return res.status(StatusCode.BAD_REQUEST).json({ message: 'Car or Driver already in use' });
     }
 
     return res.status(StatusCode.CREATED).json(createNewRentalDriver);

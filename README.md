@@ -109,13 +109,445 @@ Obs: Utilizando localmente os dados serão persistidos utilizando o SQLite.
 
 Para executar os testes, execute o comando:
 ```sh
-npm run test
+npm test
 ```
 
 ### Documentação
 
-A documentação da API pode ser acessada em http://localhost:3000/api-docs
+O projeto possui 3 endpoints, sendo eles:
+
+#### Carros
+
+- Url base: http://localhost:3001/cars
+
+<details>
+  <summary>GET /cars</summary>
+
+- Retorna todos os carros cadastrados.
 
 
+- Endpoind com filtros:
+
+    - GET /cars?color=red
+    - GET /cars?brand=Chevrolet
+    - GET /cars?color=red&brand=Chevrolet
+
+- Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "licensePlateId": "ABC-1234",
+        "name": "Corsa",
+        "brand": "Chevrolet",
+        "color": "red"
+      },
+      {
+        "licensePlateId": "DEF-5678",
+        "name": "Opala",
+        "brand": "Chevrolet",
+        "color": "gray"
+      },
+      {
+        "licensePlateId": "GHI-9012",
+        "name": "Uno",
+        "brand": "Fiat",
+        "color": "blue"
+      }
+    ]
+    ```
+</details>
+
+<details>
+  <summary>GET /cars/:id</summary>
+
+- Retorna os detalhes de um carro específico.
+
+- Endpoint com parâmetro:
+
+    - GET /cars/ABC-1234
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "licensePlateId": "ABC-1234",
+      "name": "Corsa",
+      "brand": "Chevrolet",
+      "color": "red"
+    }
+    ```
+
+- Exemplo de resposta com carro não encontrado:
+
+    ```json
+    {
+      "message": "Car not found"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>POST /cars</summary>
+
+- Cria um novo carro.
+
+- Exemplo de requisição:
+
+    ```json
+    {
+      "licensePlateId": "AAA-9999",
+      "name": "Ferrari 93",
+      "brand": "Ferrari",
+      "color": "red"
+    }
+    ```
+    ```
+- Exemplo de resposta:
+
+    ```json
+    {
+      "licensePlateId": "AAA-9999",
+      "name": "Ferrari 93",
+      "brand": "Ferrari",
+      "color": "red"
+    }
+    ```
+    ```
+</details>
+
+<details>
+  <summary>PUT /cars/:id</summary>
+
+- Atualiza as informações de um carro específico.
+
+- Endpoint com parâmetro:
+
+    - PUT /cars/AAA-9999
+
+- Exemplo de requisição:
+
+    ```json
+    {
+      "name": "Ferrari 93",
+      "brand": "Ferrari",
+      "color": "red"
+    }
+    ```
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "licensePlateId": "AAA-9999",
+      "name": "Ferrari 93",
+      "brand": "Ferrari",
+      "color": "red"
+    }
+    ```
+
+- Exemplo de resposta com carro não encontrado:
+
+    ```json
+    {
+      "message": "Car not found"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>DELETE /cars/:id</summary>
+
+- Exclui um carro específico.
+
+- Endpoint com parâmetro:
+
+    - DELETE /cars/AAA-9999
+
+- Resposta sem corpo.
+
+- Exemplo de resposta com carro não encontrado:
+
+    ```json
+    {
+      "message": "Car not found"
+    }
+    ```
+
+</details>
 
 
+#### Motoristas
+
+- Url base: http://localhost:3001/drivers
+
+<details>
+  <summary>GET /drivers</summary>
+
+- Retorna todos os motoristas cadastrados.
+
+- Endpoint com filtros:
+
+    - GET /drivers?fullname=Silva
+
+- Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "id": 1,
+        "fullName": "Lucas Silva",
+        "email": "lucas.silva@email.com",
+      },
+      {
+        "id": 2,
+        "fullName": "João Silva",
+        "email": "joao.silva@email.com",
+      }
+    ]
+    ```
+
+</details>
+
+<details>
+  <summary>GET /drivers/:id</summary>
+
+- Retorna os detalhes de um motorista específico.
+
+- Endpoint com parâmetro:
+
+    - GET /drivers/1
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "id": 1,
+      "fullName": "Lucas Silva",
+      "email": "lucas.silva@email.com",
+    }
+    ```
+
+- Exemplo de resposta com motorista não encontrado:
+
+    ```json
+    {
+      "message": "Driver not found"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>POST /drivers</summary>
+
+- Cria um novo motorista.
+
+- Exemplo de requisição:
+
+    ```json
+    {
+      "fullName": "Gabriel Silva",
+      "email": "gabriel.silva@email.com",
+    }
+    ```
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "id": 3,
+      "fullName": "Gabriel Silva",
+      "email": "gabriel.silva@email.com",
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>PUT /drivers/:id</summary>
+
+- Atualiza as informações de um motorista específico.
+
+- Endpoint com parâmetro:
+
+    - PUT /drivers/3
+
+- Exemplo de requisição:
+
+    ```json
+    {
+      "fullName": "Gabriel Coruja",
+      "email": "update.email@email.com",
+    }
+    ```
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "id": 3,
+      "fullName": "Gabriel Coruja",
+      "email": "update.email.com",
+    }
+    ```
+
+- Exemplo de resposta com motorista não encontrado:
+
+    ```json
+    {
+      "message": "Driver not found"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>DELETE /drivers/:id</summary>
+
+- Exclui um motorista específico.
+
+- Endpoint com parâmetro:
+
+    - DELETE /drivers/3
+
+- Resposta sem corpo.
+
+- Exemplo de resposta com motorista não encontrado:
+
+    ```json
+    {
+      "message": "Driver not found"
+    }
+    ```
+
+</details>
+
+#### Aluguel de Carros
+
+- Url base: http://localhost:3001/rentals
+
+<details>
+  <summary>GET /rentals/:driverId</summary>
+
+- Retorna todos os registros de aluguel de um motorista específico.
+
+- Endpoint com parâmetro:
+
+    - GET /rentals/1
+
+- Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "id": 3,
+        "fullname": "Maria Silva",
+        "email": "maria.silva@email.com",
+        "rentalCars": [
+          {
+            "licensePlateId": "GHI-9012",
+            "name": "Chevette",
+            "brand": "Chevrolet",
+            "color": "blue",
+            "RentalCarModel": {
+              "startDate": "2024-01-11T15:07:17.053Z",
+              "endDate": "2024-01-11T15:07:17.053Z",
+              "description": "job"
+            }
+          },
+          {
+            "licensePlateId": "ABC-1234",
+            "name": "Corsa",
+            "brand": "Chevrolet",
+            "color": "red",
+            "RentalCarModel": {
+              "startDate": "2024-01-11T15:07:17.053Z",
+              "endDate": "2024-01-11T15:07:17.053Z",
+              "description": "job"
+            }
+          }
+        ],
+      },
+    ]
+    ```
+
+- Exemplo de resposta com motorista não encontrado:
+
+    ```json
+    {
+      "message": "Driver not found"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>POST /rentals</summary>
+
+- Cria um novo registro de aluguel de carro.
+
+- Exemplo de requisição:
+
+    ```json
+    {
+      "driverId": 1,
+      "licensePlateId": "GHI-9012",
+      "description": "job"
+    }
+    ```
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "driverId": 1,
+      "licensePlateId": "GHI-9012",
+      "star": "2024-01-11T15:07:17.053Z",
+      "endDate": "2024-01-11T15:07:17.053Z",
+      "description": "job"
+    }
+    ```
+
+- Exemplo de carro ou motorista vinculado a outro aluguel:
+
+    ```json
+    {
+      "message": "Car or Driver already in use"
+    }
+    ```
+
+</details>
+
+<details>
+  <summary>PUT /rentals/:driverId</summary>
+
+- Finaliza um registro de aluguel de carro.
+
+- Endpoint com parâmetro:
+
+    - PUT /rentals/1
+
+- Exemplo de resposta:
+
+    ```json
+    {
+      "driverId": 1,
+      "licensePlateId": "GHI-9012",
+      "star": "2024-01-11T15:07:17.053Z",
+      "endDate": "2024-01-11T15:07:17.053Z",
+      "description": "job"
+    }
+    ```
+
+- Exemplo de resposta com motorista não encontrado:
+
+    ```json
+    {
+      "message": "Driver not found"
+    }
+    ```
+
+</details>
