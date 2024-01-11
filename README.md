@@ -36,7 +36,7 @@ Este projeto consiste em uma aplicação web para gerenciamento de uma locadora 
 
 ## Tecnologias Utilizadas
 
-|      Linguages       |                         Icon                          |
+|  Linguages/Ferramentas   |                         Icon                          |
 | :----------------: | :---------------------------------------------------: |
 | Node.JS | <a href="https://skillicons.dev"> <img src="https://skillicons.dev/icons?i=nodejs&perline=1" /></a> |
 | TypeScript | <a href="https://skillicons.dev"> <img src="https://skillicons.dev/icons?i=typescript&perline=1" /></a> |
