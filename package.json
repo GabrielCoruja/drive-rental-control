@@ -5,6 +5,8 @@
   "main": "src/application/server.ts",
   "scripts": {
     "build": "npx -y tsc",
+    "prestart": "npm run db:reset",
+    "start": "node ./build/application/server.js",
     "dev": "ts-node-dev --respawn --transpile-only ./src/application/server.ts",
     "test": "jest --coverage --verbose --detectOpenHandles --forceExit --runInBand",
     "lint": "eslint . --ext .ts",

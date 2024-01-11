@@ -15,10 +15,7 @@ class DriverPersistence implements IDriverPersistence {
     const findDriver = await this.driverModel.findByPk(id);
     if (!findDriver) return null;
 
-    const test = await findDriver.update(driver);
-    console.log('test', test);
-
-    return findDriver.dataValues;
+    return (await findDriver.update(driver)).dataValues;
   }
 
   async delete(id: string): Promise<void | null> {
@@ -36,7 +33,7 @@ class DriverPersistence implements IDriverPersistence {
   async getAllByName(fullname: string): Promise<Driver[]> {
     const getDrivers = await this.driverModel.findAll({
       where: {
-        fullname: { [Op.like]: `%${fullname}%` },
+        fullname: { [Op.iLike]: `%${fullname}%` },
       },
     });
     return getDrivers.map((driver) => driver.dataValues);

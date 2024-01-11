@@ -131,3 +131,6 @@ dist
 
 # build project
 build
+
+# database sqlite
+sqlite-database.db

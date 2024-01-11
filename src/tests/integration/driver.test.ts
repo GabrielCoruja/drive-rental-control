@@ -2,7 +2,7 @@ import * as request from 'supertest';
 
 import app from '../../application/app';
 import DriverModel from '../../infraestructure/persistence/database/models/DriverModel';
-import { drivers, driversByName, oneDriver, createDriver  } from '../mocks/driverMock';
+import { driversByName, oneDriver, createDriver  } from '../mocks/driverMock';
 
 describe('Driver routes', () => {
   beforeEach(() => {

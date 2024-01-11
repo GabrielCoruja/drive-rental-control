@@ -6,6 +6,7 @@ export default {
     return queryInterface.createTable<Model<Driver>>('drivers', {
       id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },

@@ -6,7 +6,7 @@ class ErrorHandler {
     const status = err.statusCode || 500;
     const message = err.message || 'Something went wrong';
 
-    console.log('err', err);
+    console.error(err);
 
     res.status(status).json({ message });
   }
