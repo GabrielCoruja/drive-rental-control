@@ -32,7 +32,7 @@ describe('Car routes', () => {
       expect(response.body).toEqual(carsMock[0]);
     });
 
-    it('Return any car when not found', async () => {
+    it('Return no car when not found', async () => {
       jest.spyOn(CarModel, 'findByPk').mockResolvedValueOnce(null);
 
       const response = await request(app).get('/cars/AAA-8888');
@@ -55,7 +55,7 @@ describe('Car routes', () => {
   });
 
   describe('PUT/', () => {
-    it('Return any car when not found', async () => {
+    it('Return no car when not found', async () => {
       jest.spyOn(CarModel, 'findByPk').mockResolvedValueOnce(null);
 
       const response = await request(app).put('/cars/AAA-8888').send(carsMock[0]);
@@ -66,7 +66,7 @@ describe('Car routes', () => {
   });
 
   describe('DELETE/', () => {
-    it('Return any car when not found', async () => {
+    it('Return no car when not found', async () => {
       jest.spyOn(CarModel, 'findByPk').mockResolvedValueOnce(null);
 
       const response = await request(app).delete('/cars/AAA-8888');
