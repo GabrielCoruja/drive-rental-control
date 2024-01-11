@@ -12,7 +12,7 @@ import { Dialect, Options } from 'sequelize';
 
 const config: Options = {
   dialect: 'sqlite',
-  storage: process.env.DB_STORAGE || './database.db',  // Adiciona o caminho para o arquivo SQLite
+  storage: process.env.DB_STORAGE || './sqlite-database.db',  // Adiciona o caminho para o arquivo SQLite
 };
 
 export = config;

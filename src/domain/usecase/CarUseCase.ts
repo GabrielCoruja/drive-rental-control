@@ -4,7 +4,7 @@ import CarRepository from '../repositories/Car/CarRepository';
 class CarUseCase {
   constructor(private carRepository: CarRepository) {}
 
-  public async create(car: Omit<Car, 'id'>): Promise<Car> {
+  public async create(car: Car): Promise<Car> {
     return this.carRepository.create(car);
   }
 

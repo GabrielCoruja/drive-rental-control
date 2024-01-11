@@ -19,8 +19,8 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    # - name: Verify eslint
-    #   run: npx eslint .
+    - name: Verify eslint
+      run: npx eslint .
 
-    # - name: Run tests
-    #   run: npm test
+    - name: Run tests
+      run: npm test

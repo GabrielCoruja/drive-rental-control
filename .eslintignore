@@ -9,3 +9,6 @@ src/tests/**/*.ts
 
 # config files
 jest.config.js
+
+# build files
+build/

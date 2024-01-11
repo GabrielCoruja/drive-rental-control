@@ -6,7 +6,7 @@ import CarModel from './database/models/CarModel';
 class CarPersistence implements ICarPersistence {
   constructor(private carModel: ModelStatic<CarModel>) { }
 
-  async save(car: Omit<Car, 'id'>): Promise<Car> {
+  async save(car: Car): Promise<Car> {
     const newCar = await this.carModel.create(car);
     return newCar.dataValues;
   }
