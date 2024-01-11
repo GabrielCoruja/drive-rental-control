@@ -7,7 +7,7 @@
     "build": "npx -y tsc",
     "prestart": "npm run db:reset",
     "start": "node ./build/application/server.js",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/application/server.ts",
+    "dev": "NODE_ENV=test ts-node-dev --respawn --transpile-only ./src/application/server.ts",
     "test": "jest --coverage --verbose --detectOpenHandles --forceExit --runInBand",
     "lint": "eslint . --ext .ts",
     "db:drop": "npx sequelize-cli db:drop",
