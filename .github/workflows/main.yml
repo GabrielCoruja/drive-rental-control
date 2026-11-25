@@ -1,26 +1,31 @@
-name: Configure Node.js CI
+name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout do repositório
+        uses: actions/checkout@v7
 
-    - name: Setup Node.js with version 20
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20.x'
+      - name: Configurar Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Instalar dependências
+        run: npm ci
 
-    - name: Verify eslint
-      run: npx eslint .
+      - name: Verificar tipos
+        run: npx tsc --noEmit
 
-    - name: Run tests
-      run: npm test
+      - name: Rodar o ESLint
+        run: npm run lint
+
+      - name: Rodar os testes
+        run: npm test

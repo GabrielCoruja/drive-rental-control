@@ -1,4 +1,10 @@
-# Projeto de Locadora de Carros
+# 🚗 Locadora de Carros (Drive Rental Control)
+
+[![CI](https://github.com/GabrielCoruja/drive-rental-control/actions/workflows/main.yml/badge.svg)](https://github.com/GabrielCoruja/drive-rental-control/actions/workflows/main.yml)
+![Node.js](https://img.shields.io/badge/Node.js_24-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Express](https://img.shields.io/badge/Express_5-000000?style=flat-square&logo=express&logoColor=white)
+![License](https://img.shields.io/badge/licen%C3%A7a-MIT-blue?style=flat-square)
 
 ## Descrição
 
@@ -34,6 +40,22 @@ Este projeto consiste em uma aplicação web para gerenciamento de uma locadora 
 - Um motorista só pode utilizar um carro por vez.
 - Um carro só pode ser utilizado por um motorista se estiver disponível.
 
+## Arquitetura
+
+O código é organizado em camadas, separando regras de negócio de detalhes de infraestrutura:
+
+```
+src/
+├── application/      # app Express, rotas e middleware de erros
+├── domain/           # entidades, casos de uso e contratos dos repositórios
+├── infraestructure/  # controllers, factories e persistência com Sequelize
+└── tests/            # testes de integração com Jest e Supertest
+```
+
+- **Domain** não depende de Express nem de Sequelize: os casos de uso conversam com os repositórios por interfaces.
+- **Infraestrutura** implementa essas interfaces com Sequelize (MySQL no Docker, SQLite localmente).
+- **Factories** montam as dependências de cada controller (injeção de dependência manual).
+
 ## Tecnologias Utilizadas
 
 |  Linguages/Ferramentas   |                         Icon                          |
@@ -54,7 +76,7 @@ Este projeto consiste em uma aplicação web para gerenciamento de uma locadora 
 
 ### Pré-requisitos
 
-- [Node.JS](https://nodejs.org/en/download/)
+- [Node.js](https://nodejs.org/en/download/) 22 ou superior
 - [Docker](https://docs.docker.com/engine/install/)
 
 ### Instalação
@@ -77,7 +99,7 @@ Este projeto consiste em uma aplicação web para gerenciamento de uma locadora 
 - Para subir a aplicação e o banco de dados, execute o comando:
 
     ```sh
-   docker-compose up -d --build
+   docker compose up -d --build
     ```
 
 Obs: Utilizando o docker os dados serão persistidos utilizando o MySQL.
@@ -553,3 +575,7 @@ O projeto possui 3 endpoints, sendo eles:
     ```
 
 </details>
+
+## Licença
+
+Distribuído sob a licença MIT. Veja [LICENSE](LICENSE).

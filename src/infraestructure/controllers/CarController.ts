@@ -16,7 +16,7 @@ class CarController {
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const { name, brand, color, licensePlateId } = req.body;
 
     const car = await this.carUseCase.update(id, { name, brand, color, licensePlateId });
@@ -27,7 +27,7 @@ class CarController {
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const deleteCar = await this.carUseCase.delete(id);
     if (deleteCar === null) {
@@ -45,7 +45,7 @@ class CarController {
   }
 
   async getById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const car = await this.carUseCase.getById(id);
     if (!car) return res.status(StatusCode.NOT_FOUND).json({ message: this.messageCarNotFound });

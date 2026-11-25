@@ -30,12 +30,11 @@ class DriverPersistence implements IDriverPersistence {
     return findDriver.dataValues;
   }
 
-  async getAllByName(fullname: string): Promise<Driver[]> {
-    const getDrivers = await this.driverModel.findAll({
-      where: {
-        fullname: { [Op.iLike]: `%${fullname}%` },
-      },
-    });
+  async getAllByName(fullname?: string): Promise<Driver[]> {
+    // Op.iLike só existe no PostgreSQL. No MySQL e no SQLite o LIKE já ignora
+    // maiúsculas e minúsculas, então Op.like funciona nos dois bancos do projeto.
+    const where = fullname ? { fullname: { [Op.like]: `%${fullname}%` } } : {};
+    const getDrivers = await this.driverModel.findAll({ where });
     return getDrivers.map((driver) => driver.dataValues);
   }
 }
