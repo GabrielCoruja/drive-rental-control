@@ -16,7 +16,7 @@ class DriverController {
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const { fullname, email } = req.body;
 
     const driver = await this.driverUseCase.update(id, { fullname, email });
@@ -28,7 +28,7 @@ class DriverController {
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const deleteDriver = await this.driverUseCase.delete(id);
     if (deleteDriver === null) {
@@ -47,7 +47,7 @@ class DriverController {
   }
 
   async getById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const driver = await this.driverUseCase.getById(id);
     if (!driver) {

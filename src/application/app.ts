@@ -1,4 +1,3 @@
-import 'express-async-errors';
 import * as express from 'express';
 import helmet from 'helmet';
 import carRoutes from './routes/carRoutes';
@@ -14,7 +13,9 @@ app.use(helmet());
 app.use('/cars', carRoutes);
 app.use('/drivers', driverRoutes);
 app.use('/rentals', rentalCarRoutes);
-app.use('*', (_req, res) => res.status(404).json({ message: 'Route Not Found' }));
+app.use((_req: express.Request, res: express.Response) => {
+  res.status(404).json({ message: 'Route Not Found' });
+});
 
 app.use(ErrorHandler.handleError);
 

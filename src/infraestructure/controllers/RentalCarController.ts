@@ -23,7 +23,7 @@ class DriverController {
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const { driverId } = req.params;
+    const { driverId } = req.params as { driverId: string };
 
     const driverReturningCar = await this.rentalCarUseCase.update(driverId);
     if (!driverReturningCar) {
@@ -34,7 +34,7 @@ class DriverController {
   }
 
   async getById(req: Request, res: Response): Promise<Response> {
-    const { driverId } = req.params;
+    const { driverId } = req.params as { driverId: string };
 
     const driverData = await this.rentalCarUseCase.getById(driverId);
     if (!driverData) {
